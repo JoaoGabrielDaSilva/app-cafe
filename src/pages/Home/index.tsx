@@ -1,23 +1,41 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Option, ToggleSwitch } from "../../components/ToggleSwitch";
+import { theme } from "../../styles/theme";
+
+const optionsBase = [
+  {
+    text: "Today",
+  },
+  {
+    text: "Tomorrow",
+  },
+];
 
 export const Home = () => {
-  const [count, setCount] = useState(0);
+  const [selectedOption, setSelectedOptions] = useState<Option>(optionsBase[0]);
 
-  const increase = () => setCount(count + 1);
+  const selectOption = (option: Option) => {
+    setSelectedOptions(option);
+  };
 
-  const decrease = () => setCount(count - 1);
+  console.log(selectedOption);
 
   return (
-    <View>
-      <Text testID="count">{count}</Text>
-
-      <TouchableOpacity testID="increase-button" onPress={increase}>
-        <Text>Increase</Text>
-      </TouchableOpacity>
-      <TouchableOpacity testID="decrease-button" onPress={decrease}>
-        <Text>Decrease</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <ToggleSwitch
+        options={optionsBase}
+        onPress={selectOption}
+        selected={selectedOption}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 100,
+    backgroundColor: theme.background.primary,
+  },
+});
