@@ -15,6 +15,7 @@ import com.facebook.soloader.SoLoader;
 import com.appcafe.newarchitecture.MainApplicationReactNativeHost;
   import com.facebook.react.bridge.JSIModulePackage; 
   import com.swmansion.reanimated.ReanimatedJSIModulePackage; 
+  import com.airbnb.android.react.lottie.LottiePackage;
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
+      packages.add(new LottiePackage());
       // Packages that cannot be autolinked yet can be added manually here, for example:
       // packages.add(new MyReactNativePackage());
       return packages;
