@@ -9,7 +9,7 @@ import { theme } from "../../styles/theme";
 type Props = StackHeaderProps & {};
 
 export const Header = ({ options }: Props) => {
-  const { title } = options;
+  const { headerTitle } = options;
 
   return (
     <View style={styles.container}>
@@ -19,7 +19,7 @@ export const Header = ({ options }: Props) => {
         </View>
       </BorderlessButton>
       <View>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{headerTitle}</Text>
       </View>
       <BorderlessButton onPress={() => console.log("123")}>
         <View style={styles.iconContainer}>

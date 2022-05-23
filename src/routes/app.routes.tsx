@@ -2,6 +2,7 @@ import React from "react";
 import { Home } from "../pages/Home";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Header } from "../components/Header";
+import { BottomTabs } from "./bottomTabs.routes";
 
 type RootStackParamList = {
   Home: undefined;
@@ -14,8 +15,9 @@ export const AppRoutes = () => (
     screenOptions={{
       header: (props) => <Header {...props} />,
       headerTransparent: true,
+      headerTitle: "Weather",
     }}
   >
-    <Stack.Screen name="Home" component={Home} options={{ title: "Weather" }} />
+    <Stack.Screen name="Tabs" component={BottomTabs} />
   </Stack.Navigator>
 );
