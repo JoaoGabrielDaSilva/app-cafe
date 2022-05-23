@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   StyleSheet,
@@ -13,7 +13,9 @@ import Animated, {
   interpolateNode,
   useAnimatedStyle,
   useDerivedValue,
+  useSharedValue,
   withSpring,
+  WithSpringConfig,
   withTiming,
 } from "react-native-reanimated";
 import { theme } from "../../styles/theme";
@@ -24,18 +26,25 @@ export type Option = {
   text: string;
 };
 
+type Side = "left" | "right";
+
 type Props = {
   options: Option[];
-  selected: Option;
+  defaultValue: Side;
   onPress: (option: Option) => void;
 };
 
 const INPUT_RANGE = [0, 1];
 
-export const ToggleSwitch = ({ options, onPress, selected }: Props) => {
-  const translateX = useDerivedValue(() => {
-    return selected.text === "Today" ? withTiming(0) : withTiming(1);
-  }, [selected]);
+export const ToggleSwitch = ({
+  options,
+  onPress,
+  defaultValue = "left",
+}: Props) => {
+  const position = defaultValue === "left" ? 0 : 1;
+
+  const translateX = useSharedValue(position);
+  const [value, setValue] = useState(options[position].text);
 
   const indicatorStyles = useAnimatedStyle(() => {
     return {
@@ -43,12 +52,34 @@ export const ToggleSwitch = ({ options, onPress, selected }: Props) => {
     };
   });
 
+  const toggleAnimation = () => {
+    const config: WithSpringConfig = {
+      damping: 30,
+      stiffness: 300,
+    };
+
+    translateX.value = translateX.value
+      ? withSpring(0, config)
+      : withSpring(1, config);
+  };
+
+  const handlePress = (item: Option) => {
+    if (item.text === value) return;
+
+    toggleAnimation();
+    onPress(item);
+    setValue(item.text);
+  };
+
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.indicator, indicatorStyles]} />
 
       {options.map((item) => (
-        <TouchableWithoutFeedback onPress={() => onPress(item)} key={item.text}>
+        <TouchableWithoutFeedback
+          onPress={() => handlePress(item)}
+          key={item.text}
+        >
           <View style={[styles.optionContainer]}>
             <Animated.Text style={[styles.text]}>{item.text}</Animated.Text>
           </View>

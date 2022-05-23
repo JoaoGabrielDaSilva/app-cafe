@@ -23,7 +23,7 @@ export const Header = ({ options }: Props) => {
       </View>
       <BorderlessButton onPress={() => console.log("123")}>
         <View style={styles.iconContainer}>
-          <Ionicons name="ellipsis-vertical" style={styles.icon} />
+          <Ionicons name="search" style={styles.icon} />
         </View>
       </BorderlessButton>
     </View>

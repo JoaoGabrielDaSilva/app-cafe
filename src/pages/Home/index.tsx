@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Option, ToggleSwitch } from "../../components/ToggleSwitch";
 import { theme } from "../../styles/theme";
 import * as Location from "expo-location";
-import weatherServices from "../../services/weatherServices";
-import { epochToDate } from "../../utils/epochToDate";
+
 import { MainInfo } from "./MainInfo";
+import { AdditionalInfo } from "./AdditionalInfo";
+import { HourlyForecast } from "./HourlyForecast";
 
 const optionsBase = [
   {
@@ -19,6 +20,7 @@ const optionsBase = [
 export const Home = () => {
   const [location, setLocation] = useState(null);
   const [selectedOption, setSelectedOptions] = useState<Option>(optionsBase[0]);
+  const [selectedHour, setSelectedHour] = useState(0);
 
   const selectOption = (option: Option) => {
     setSelectedOptions(option);
@@ -38,24 +40,39 @@ export const Home = () => {
       //   lon: location[0].longitude,
       // });
 
-      // console.log(response);
+      console.log(selectedHour);
     } catch (error) {
       console.log(error.response.data);
     }
   };
 
+  const handleChangeHour = (index: number) => {
+    setSelectedHour(index);
+  };
+
   useEffect(() => {
     getLocation();
-  }, []);
+  }, [selectedHour]);
 
   return (
     <View style={styles.container}>
-      <ToggleSwitch
-        options={optionsBase}
-        onPress={selectOption}
-        selected={selectedOption}
-      />
-      <MainInfo />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingVertical: theme.spacing.xlg }}
+        overScrollMode="never"
+      >
+        <ToggleSwitch
+          options={optionsBase}
+          onPress={selectOption}
+          defaultValue="right"
+        />
+        <MainInfo />
+        <AdditionalInfo />
+        <HourlyForecast
+          onSelectHour={handleChangeHour}
+          selectedHour={selectedHour}
+        />
+      </ScrollView>
     </View>
   );
 };

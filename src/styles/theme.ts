@@ -6,12 +6,14 @@ export const theme = {
   },
   text: {
     primary: "#f9fafb",
-    secondary: "#4f555a",
+    secondary: "#6a6c6e",
   },
   spacing: {
     sm: 5,
     md: 10,
     lg: 20,
+    xlg: 25,
+    xxlg: 30,
   },
   radii: {
     sm: 5,
