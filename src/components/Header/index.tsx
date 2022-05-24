@@ -5,27 +5,44 @@ import { StyleSheet, Text, View } from "react-native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 import { RFValue } from "react-native-responsive-fontsize";
 import { theme } from "../../styles/theme";
+import { SearchInput } from "../Inputs/SearchInput";
 
 type Props = StackHeaderProps & {};
 
-export const Header = ({ options }: Props) => {
+export const Header = ({
+  options,
+  navigation: { navigate, goBack },
+  route,
+}: Props) => {
   const { headerTitle } = options;
+
+  const searchInput = route.name === "LocationSearch";
 
   return (
     <View style={styles.container}>
-      <BorderlessButton onPress={() => console.log("123")}>
+      <BorderlessButton onPress={goBack}>
         <View style={styles.iconContainer}>
           <Ionicons name="chevron-back" style={styles.icon} />
         </View>
       </BorderlessButton>
-      <View>
-        <Text style={styles.title}>{headerTitle}</Text>
-      </View>
-      <BorderlessButton onPress={() => console.log("123")}>
-        <View style={styles.iconContainer}>
-          <Ionicons name="search" style={styles.icon} />
+      {headerTitle ? (
+        <View>
+          <Text style={styles.title}>{headerTitle}</Text>
         </View>
-      </BorderlessButton>
+      ) : null}
+      {searchInput ? (
+        <SearchInput />
+      ) : (
+        <BorderlessButton onPress={() => console.log("123")}>
+          <View style={styles.iconContainer}>
+            <Ionicons
+              name="search"
+              style={styles.icon}
+              onPress={() => navigate("LocationSearch")}
+            />
+          </View>
+        </BorderlessButton>
+      )}
     </View>
   );
 };
