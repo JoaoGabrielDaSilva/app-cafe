@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomTab } from "../components/BottomTab";
 import { Home } from "../pages/Home";
+import { LocationSearch } from "../pages/LocationSearch";
 import { Schedule } from "../pages/Schedule";
 import { Settings } from "../pages/Settings";
 import { theme } from "../styles/theme";

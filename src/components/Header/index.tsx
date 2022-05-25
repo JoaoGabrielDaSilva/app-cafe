@@ -33,13 +33,9 @@ export const Header = ({
       {searchInput ? (
         <SearchInput />
       ) : (
-        <BorderlessButton onPress={() => console.log("123")}>
+        <BorderlessButton onPress={() => navigate("LocationSearch")}>
           <View style={styles.iconContainer}>
-            <Ionicons
-              name="search"
-              style={styles.icon}
-              onPress={() => navigate("LocationSearch")}
-            />
+            <Ionicons name="search" style={styles.icon} />
           </View>
         </BorderlessButton>
       )}

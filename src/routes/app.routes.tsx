@@ -7,6 +7,7 @@ import { LocationSearch } from "../pages/LocationSearch";
 
 type RootStackParamList = {
   Tabs: undefined;
+  LocationSearch: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -22,10 +23,7 @@ export const AppRoutes = () => (
     <Stack.Screen
       name="LocationSearch"
       component={LocationSearch}
-      options={{
-        animationEnabled: false,
-        detachPreviousScreen: false,
-      }}
+      options={{ detachPreviousScreen: true, animationEnabled: false }}
     />
   </Stack.Navigator>
 );

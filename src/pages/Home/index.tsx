@@ -59,7 +59,7 @@ export const Home = () => {
     <View style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingVertical: theme.spacing.xlg }}
+        contentContainerStyle={{ paddingBottom: theme.spacing.xlg }}
         decelerationRate={0.1}
         overScrollMode="never"
       >
