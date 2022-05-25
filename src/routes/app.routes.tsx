@@ -3,6 +3,7 @@ import { Home } from "../pages/Home";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Header } from "../components/Header";
 import { BottomTabs } from "./bottomTabs.routes";
+import { LocationSearch } from "../pages/LocationSearch";
 
 type RootStackParamList = {
   Tabs: undefined;
@@ -15,9 +16,16 @@ export const AppRoutes = () => (
     screenOptions={{
       header: (props) => <Header {...props} />,
       headerTransparent: true,
-      headerTitle: "Weather",
     }}
   >
     <Stack.Screen name="Tabs" component={BottomTabs} />
+    <Stack.Screen
+      name="LocationSearch"
+      component={LocationSearch}
+      options={{
+        animationEnabled: false,
+        detachPreviousScreen: false,
+      }}
+    />
   </Stack.Navigator>
 );
