@@ -30,7 +30,6 @@ type Side = "left" | "right";
 
 type Props = {
   options: Option[];
-  defaultValue: Side;
   onPress: (option: Option) => void;
 };
 

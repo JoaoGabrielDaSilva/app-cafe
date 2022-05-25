@@ -15,8 +15,6 @@ const icons = {
 };
 
 export const BottomTab = ({ navigation: { navigate }, state }: Props) => {
-  console.log(state);
-
   const routes = useMemo(() => {
     return state.routeNames.map((item) => ({
       name: item,

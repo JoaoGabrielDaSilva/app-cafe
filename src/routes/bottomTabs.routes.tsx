@@ -11,9 +11,10 @@ export const BottomTabs = () => {
   return (
     <Tabs.Navigator
       tabBar={(props) => <BottomTab {...props} />}
-      screenOptions={{ headerShown: false, tabBarActiveBackgroundColor: "red" }}
+      screenOptions={{ headerShown: false }}
       sceneContainerStyle={{
         backgroundColor: theme.background.primary,
+        paddingTop: 100,
       }}
     >
       <Tabs.Screen name="Home" component={Home} />

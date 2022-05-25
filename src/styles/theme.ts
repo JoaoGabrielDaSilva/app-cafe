@@ -9,6 +9,7 @@ export const theme = {
     secondary: "#6a6c6e",
   },
   spacing: {
+    xsm: 2.5,
     sm: 5,
     md: 10,
     lg: 20,

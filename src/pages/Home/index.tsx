@@ -7,6 +7,7 @@ import * as Location from "expo-location";
 import { MainInfo } from "./MainInfo";
 import { AdditionalInfo } from "./AdditionalInfo";
 import { HourlyForecast } from "./HourlyForecast";
+import { useNavigation } from "@react-navigation/native";
 
 const optionsBase = [
   {
@@ -59,13 +60,10 @@ export const Home = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingVertical: theme.spacing.xlg }}
+        decelerationRate={0.1}
         overScrollMode="never"
       >
-        <ToggleSwitch
-          options={optionsBase}
-          onPress={selectOption}
-          defaultValue="right"
-        />
+        <ToggleSwitch options={optionsBase} onPress={selectOption} />
         <MainInfo />
         <AdditionalInfo />
         <HourlyForecast
@@ -80,7 +78,6 @@ export const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 100,
     backgroundColor: theme.background.primary,
   },
 });

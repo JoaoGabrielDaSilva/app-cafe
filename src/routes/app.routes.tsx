@@ -5,7 +5,7 @@ import { Header } from "../components/Header";
 import { BottomTabs } from "./bottomTabs.routes";
 
 type RootStackParamList = {
-  Home: undefined;
+  Tabs: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
