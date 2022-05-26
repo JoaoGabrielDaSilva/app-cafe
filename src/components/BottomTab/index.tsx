@@ -28,6 +28,7 @@ export const BottomTab = ({ navigation: { navigate }, state }: Props) => {
     <View style={styles.container}>
       {routes.map((route, index) => (
         <BorderlessButton
+          key={index}
           onPress={() => navigate(route.name)}
           style={{ padding: 5 }}
           rippleColor={theme.text.secondary}

@@ -23,7 +23,7 @@ export const AppRoutes = () => (
     <Stack.Screen
       name="LocationSearch"
       component={LocationSearch}
-      options={{ detachPreviousScreen: true, animationEnabled: false }}
+      options={{ detachPreviousScreen: false, animationEnabled: false }}
     />
   </Stack.Navigator>
 );

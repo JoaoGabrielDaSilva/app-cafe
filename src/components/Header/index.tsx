@@ -1,17 +1,24 @@
 import { Ionicons } from "@expo/vector-icons";
 import { StackHeaderProps } from "@react-navigation/stack";
-import React from "react";
+import React, { useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
+import {
+  GooglePlacesAutocomplete,
+  GooglePlacesAutocompleteRef,
+} from "react-native-google-places-autocomplete";
 import { RFValue } from "react-native-responsive-fontsize";
+import googlePlacesServices from "../../services/googlePlacesServices";
 import { theme } from "../../styles/theme";
 import { SearchInput } from "../Inputs/SearchInput";
+import { SearchInputItem } from "../Inputs/SearchInput/SearchInputItem";
+import { LocationCard } from "../ListItems/LocationCard";
 
 type Props = StackHeaderProps & {};
 
 export const Header = ({
   options,
-  navigation: { navigate, goBack },
+  navigation: { navigate, goBack, canGoBack },
   route,
 }: Props) => {
   const { headerTitle } = options;
@@ -21,9 +28,11 @@ export const Header = ({
   return (
     <View style={styles.container}>
       <BorderlessButton onPress={goBack}>
-        <View style={styles.iconContainer}>
-          <Ionicons name="chevron-back" style={styles.icon} />
-        </View>
+        {canGoBack() && (
+          <View style={styles.iconContainer}>
+            <Ionicons name="chevron-back" style={styles.icon} />
+          </View>
+        )}
       </BorderlessButton>
       {headerTitle ? (
         <View>
@@ -31,7 +40,9 @@ export const Header = ({
         </View>
       ) : null}
       {searchInput ? (
-        <SearchInput />
+        <SearchInput
+          onChangeText={(text) => googlePlacesServices.searchLocation({ text })}
+        />
       ) : (
         <BorderlessButton onPress={() => navigate("LocationSearch")}>
           <View style={styles.iconContainer}>

@@ -27,7 +27,7 @@ import Animated, {
 import { RFValue } from "react-native-responsive-fontsize";
 import { theme } from "../../../styles/theme";
 
-type Props = {
+type Props = TextInputProps & {
   style?: StyleProp<ViewStyle>;
 };
 
@@ -39,7 +39,6 @@ export const SearchInput = ({ style, ...props }: Props) => {
   const state = useSharedValue(0);
 
   const inputRef = useRef<TextInput>();
-  const { goBack } = useNavigation();
 
   const onBlur = () => {};
 

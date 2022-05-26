@@ -6,7 +6,10 @@ import {
   LocationCardProps,
 } from "../../components/ListItems/LocationCard";
 
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+
 import { theme } from "../../styles/theme";
+import { SearchInput } from "../../components/Inputs/SearchInput";
 
 const data = [
   {

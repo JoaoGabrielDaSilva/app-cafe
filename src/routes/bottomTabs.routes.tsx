@@ -18,7 +18,11 @@ export const BottomTabs = () => {
         paddingTop: 100,
       }}
     >
-      <Tabs.Screen name="Home" component={Home} />
+      <Tabs.Screen
+        name="Home"
+        component={Home}
+        options={{ headerTitle: "Weather" }}
+      />
       <Tabs.Screen name="Schedule" component={Schedule} />
       <Tabs.Screen name="Settings" component={Settings} />
     </Tabs.Navigator>
